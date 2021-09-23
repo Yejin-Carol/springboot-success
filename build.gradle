@@ -1,0 +1,30 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.7.RELEASE' // 2.1.7, 2.1.8, 2.1.9 다 괜찮습니다.
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+//의존성들을 적용할 것인지 결정하는 코드
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management' //스프링 부트의 의존성들을 관리해 주는 플러그인으로 필수!
+
+group 'org.practice'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {//interesting fact: 인텔리제이는 Maven 저장소의 데이터를 인덱싱해서 관리, 커뮤니티 버전을 사용해도 의존성 자동완성이 가능함.
+    compile('org.springframework.boot:spring-boot-starter-web')//자동완성기능 활용하기! Ctrl+Space
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
