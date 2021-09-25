@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.1.7.RELEASE' // 2.1.7, 2.1.8, 2.1.9 다 괜찮습니다.
+        springBootVersion = '2.1.9.RELEASE' // 2.1.7, 2.1.8, 2.1.9 다 괜찮습니다.
     }
     repositories {
         mavenCentral()
@@ -17,14 +17,28 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management' //스프링 부트의 의존성들을 관리해 주는 플러그인으로 필수!
 
 group 'org.practice'
-version '1.0-SNAPSHOT'
+version '1.0-SNAPSHOT'+new Date().format("yyyyMMddHHmmss")
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {//interesting fact: 인텔리제이는 Maven 저장소의 데이터를 인덱싱해서 관리, 커뮤니티 버전을 사용해도 의존성 자동완성이 가능함.
-    compile('org.springframework.boot:spring-boot-starter-web')//자동완성기능 활용하기! Ctrl+Space
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.projectlombok:lombok')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-mustache')
+    compile('com.h2database:h2')
+
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+    compile('org.springframework.session:spring-session-jdbc')
+
+    compile("org.mariadb.jdbc:mariadb-java-client")
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile("org.springframework.security:spring-security-test")
+
+
 }
