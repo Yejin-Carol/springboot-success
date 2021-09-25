@@ -16,11 +16,6 @@ import lombok.NoArgsConstructor;
 @Entity //JPA Annotation, SalesManager.java -> sales_manager table
 public class Posts {
 
-    public void update(String title, String content) {
-        this.title = title;
-        this.content = content;
-    }
-
     @Id//해당 테이블의 PK필드 나타냄
     //PK 생성 규칙
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,9 +36,12 @@ public class Posts {
         this.title = title;
         this.content = content;
         this.author = author;
-
     }
 
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 
 
 }
